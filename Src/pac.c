@@ -5,10 +5,12 @@
 
 #include "Headers/pac.h"
 
+// Function to extract the Pointer Authentication Code (PAC) from a signed pointer.
 PAC extract_pac(uint64_t signed_pointer) {
     PAC pac_lower = (signed_pointer >> 47) & 0x0FF;
     PAC pac_upper = (signed_pointer >> 56) & 0x0FF;
 
+    // Combine the upper and lower parts to form the complete 16-bit PAC.
     return (pac_upper << 8) | pac_lower;
 }
 
