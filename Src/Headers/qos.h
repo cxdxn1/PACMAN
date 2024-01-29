@@ -4,7 +4,6 @@
 
 // sys/qos.h
 
-
 // Constants for the different kinds of cores on the M1 SoC.
 typedef enum {
     PCORE = 0x21, // QOS_CLASS_USER_INTERACTIVE
