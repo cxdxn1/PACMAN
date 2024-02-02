@@ -1,2 +1,2 @@
 # pacman-attack
-A C fork of jprx's PacmanAttack, a hardware exploit on all Apple M1 SoC's that can bypass PAC (pointer authentication). Originally coded in Rust.
+PACMAN is a rewrite of of jprx's PacmanAttack, which utilises a hardware exploit that allows to bypass PAC (pointer authentication) on all M1 SoC's. Originally coded in Rust.
