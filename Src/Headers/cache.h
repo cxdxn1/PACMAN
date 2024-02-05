@@ -1,4 +1,5 @@
 // Header file for cache.h
+// Copyright © cxdxn1 2024, all rights reserved
 
 #ifndef CACHE_H
 #define CACHE_H
