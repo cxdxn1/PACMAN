@@ -1,8 +1,10 @@
-// Header file for qos.h
+// qos.h
+// Copyright © cxdxn1 2024, all rights reserved
 
 #include <stdint.h>
 
 // sys/qos.h
+
 
 // Constants for the different kinds of cores on the M1 SoC.
 typedef enum {
