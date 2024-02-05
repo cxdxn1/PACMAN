@@ -1,4 +1,5 @@
 // Header file for attacks.h
+// Copyright © cxdxn1 2024, all rights reserved
 
 #ifndef ATTACK_H
 #define ATTACK_H
