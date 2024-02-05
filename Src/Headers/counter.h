@@ -1,5 +1,5 @@
 // Header file for counter.h
-
+// Copyright © cxdxn1 2024, all rights reserved
 
 #ifndef COUNTER_H
 #define COUNTER_H
