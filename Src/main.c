@@ -4,11 +4,15 @@
 
 // Copyright © cxdxn1 2024, all rights reserved
 
+// PLEASE NOTE: Getting similar errors that I got in tests.c
+// Fix in progress
+
 // General headers used in C
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <mach/mach.h>
+#include <mach/mach_time.h>
 
 #define MEM_REGION_SIZE 0x40000000000
 
@@ -50,4 +54,83 @@ void flush_cache(unsigned char* memory_region) {
         volatile unsigned char dummy = *ptr;
         (void)dummy;  // suppress any unused variable warnings
     }
+}
+
+// Flushes iCache
+void flush_iCache(uint64_t retpoline) {
+    uint64_t retpoline_unsigned = retpoline & (~PAC_BITMASK);
+    for (uint64_t i = 0; i < L2_SIZE; i += L1I_LINESIZE) {
+        time_exec(retpoline_unsigned + i);
+    }
+}
+
+// Defines the attack function
+void attack(uint8_t *shared_mem) {
+    // Uncomment and replace the following lines
+    // attacks_evict_reload_inst_evict_reload(shared_mem);
+    // attacks_evict_reload_data_evict_reload(shared_mem);
+    // attacks_evict_reload_inst_evict_reload_kernel(shared_mem);
+    // attacks_evict_reload_data_evict_reload_kernel(shared_mem);
+    // attacks_prime_probe_inst_prime_probe(shared_mem);
+    // attacks_spectre_inst_spectre_kernel(shared_mem);
+    // attacks_pacman_data_testing(shared_mem, true);
+    // attacks_pacman_inst_testing(shared_mem, true);
+    // attacks_pacman_end_to_end(shared_mem);
+    // attacks_pacman_pacman_real(shared_mem);
+}
+
+
+// Measures and prints cache hit/miss latency and timer overhead using shared memory.
+void report_platform_info(uint8_t *shared_mem) {
+    uint64_t timer_overhead = timer_overhead();
+    uint64_t miss_latency = time_miss(shared_mem);
+    uint64_t hit_latency = time_hit(shared_mem);
+
+    printf("Hit took %llu cycles\n", hit_latency);
+    printf("Miss took %llu cycles\n", miss_latency);
+    printf("Timer overhead is %llu cycles\n", timer_overhead);
+    printf("We are on core %d\n", core_id());
+}
+
+
+
+// Where the magic (should) happen
+int main() {
+    srand(mach_absolute_time() & 0xFFFFFFFF);
+
+    // Uncomment and replace the following lines with C equivalents for the Rust code
+    // if (!set_core(CoreKind_PCORE)) {
+    //     printf("Error setting CPU affinity!\n");
+    //     return 1;
+    // }
+
+    uint8_t *loc = NULL;
+    kern_return_t kret = mach_vm_allocate(
+            mach_task_self(),
+            (vm_address_t*)&loc,
+            MEM_REGION_SIZE,
+            VM_FLAGS_ANYWHERE
+    );
+
+    if (KERN_SUCCESS != kret) {
+        printf("Error creating memory region! (%d)\n", kret);
+        return 1;
+    }
+
+    printf("Created mach memory region at 0x%llX\n", (uint64_t)loc);
+
+    // Uncomment and replace the following lines with C equivalents for the Rust code
+    // uint8_t *shared_mem = loc;
+    // printf("Shared memory is at 0x%llX\n", (uint64_t)&shared_mem[0]);
+
+    // Uncomment and replace the following lines with C equivalents for the Rust code
+    // thread_spawn(counter_thread);
+    // while (0 == read_volatile(&CTR)) {}
+
+    // Uncomment and replace the following lines with C equivalents for the Rust code
+    // report_platform_info(shared_mem);
+    // init_memory(shared_mem);
+    // attack(shared_mem);
+
+    return 0;
 }
