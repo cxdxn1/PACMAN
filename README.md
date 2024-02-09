@@ -2,7 +2,7 @@
 PACMAN is a rewrite of of jprx's PacmanAttack, which utilises a hardware exploit that allows to bypass PAC (pointer authentication) on all M1 SoC's. Originally coded in Rust.
 
 # Version support
-Currently isn't functional, however macOS support will arrive as soon as those headers + main.c are done.
+Currently isn't functional, however macOS support will arrive as soon as tests.c + main.c are fixed.
 M1 iPads might be supported if I get PPLRW to work.
 I have no idea about A14 support (M1 and A14 have the same CPU cores so it might work), it would PPLRW to work and a lot more work would need to be done to port everything to A14. I'm not making any promises though, however I will try and work on it.
 
