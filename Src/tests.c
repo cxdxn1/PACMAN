@@ -4,14 +4,14 @@
 #include <stdio.h>
 
 #include "Headers/tests.h"
-#include "Headers/evset.h"
+#include "Headers/retpoline.h"
 
 // PLEASE NOTE: read_volatile, set_core, gettime and CoreKind are curently broken
 // Currently working on fixing them
 
 void test_timers() {
     int x = 0;
-    uint64_t t1_mach = getline();
+    uint64_t t1_mach = gettime();
     uint64_t t1 = read_volatile(&CTR);
 
     for (int i = 0; i < 1000; i++) {
@@ -28,8 +28,8 @@ void test_timers() {
 
 // Declaration of EvSet
 typedef struct {
-    uint8_t* addrs; // Assumes you have an appropriate data type
-    int len;        // Assumes len represents the length of the addrs array
+    uint8_t** addrs; // Use a pointer to an array of pointers
+    int len;         // Length of the array
 } EvSet;
 
 void data_ev_set_test(uint8_t* shared_mem) {
@@ -38,7 +38,9 @@ void data_ev_set_test(uint8_t* shared_mem) {
         return;
     }
 
-    EvSet evset = data_evset(&shared_mem[0], shared_mem);
+    uint8_t* evset_addrs[/* MAX_SIZE */];
+
+    evset = data_evset(&shared_mem[0], shared_mem);
 
     printf("reading 0x%X twice\n", (uint64_t)&shared_mem[0]);
     uint64_t t0 = read_counter();
@@ -102,6 +104,11 @@ void data_ev_set_test(uint8_t* shared_mem) {
     printf("%d / %d\n", num_miss, evset.len);
 }
 
+// Declaration of InstEvSet
+typedef struct {
+    uint8_t** addrs; // Use a pointer to an array of pointers
+    int len;         // Length of the array
+} InstEvSet;
 
 void inst_pev_set_test(uint8_t* shared_mem) {
     PacmanKitConnection handle;
@@ -122,7 +129,10 @@ void inst_pev_set_test(uint8_t* shared_mem) {
     printf("Kernel mmap VA: 0x%lX\n            PA: 0x%lX\n", kernel_mmap_va, kernel_mmap_pa);
     printf("Generating eviction set to match address with L2 set %u...\n", target_set);
 
-    InstEvSet evset = inst_pevset(kernel_mmap_va, kernel_mmap_pa, shared_mem);
+    InstEvSet evset;
+
+    // Call the inst_pevset function and assign the result to the InstEvSet variable
+    evset = inst_pevset(kernel_mmap_va, kernel_mmap_pa, shared_mem);
 
     printf("Found %d conflicts.\n", evset.len);
     printf("%X\n", evset.addrs[0]);
@@ -177,7 +187,7 @@ void test_pacmankit() {
         // Dummy implementation for other necessary structures
     } CacheInfo;
 
-    uint64_t get_kernel_base(PacmanKitConnection* handle) {
+    uint64_t get_kernel_base;(PacmanKitConnection* handle){
         // Dummy implementation for get_kernel_base
         return 0;
     }
