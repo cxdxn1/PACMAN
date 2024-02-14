@@ -1,5 +1,5 @@
 // evset.h
-// Copyright © cxdxn1 2024, all rights reserved
+// Created by Rayyan Khan
 
 #ifndef EVSET_H
 #define EVSET_H

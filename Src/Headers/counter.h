@@ -1,14 +1,10 @@
-// Header file for counter.h
-// Copyright © cxdxn1 2024, all rights reserved
+// counter.h
+// Created by Rayyan Khan
 
 #ifndef COUNTER_H
 #define COUNTER_H
 
 #include <stdint.h>
-
-// Include necessary headers from the crate
-#include "Crate/crate_header1.h"
-#include "Crate/crate_header2.h"
 
 // A counter that can be used to see how much time has passed
 extern uint64_t CTR;

@@ -1,4 +1,5 @@
-// Header file for kernel_rw.h
+// kernel_rw.h
+// Created by Rayyan Khan
 
 #ifndef KERNEL_RW_H
 #define KERNEL_RW_H

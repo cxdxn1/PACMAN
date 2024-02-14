@@ -1,4 +1,5 @@
-// Header file for libdarwin.h
+// libdarwin.h
+// Created by Rayyan Khan
 
 #ifndef LIBDARWIN_H
 #define LIBDARWIN_H

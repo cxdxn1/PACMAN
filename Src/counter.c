@@ -8,11 +8,6 @@
 
 #include <stdint.h>
 
-// Include necessary headers from the crate
-
-#include "Headers/Crate/crate_header1.h"
-#include "Headers/Crate/crate_header2.h"
-
 // A globally visible counter that can be sampled to get a rough measurement of how far time has passed.
 // Make sure you synchronize before sampling
 extern uint64_t CTR;

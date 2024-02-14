@@ -1,4 +1,5 @@
-// Header file for spectre.h
+// spectre.h
+// Created by Rayyan Khan
 
 #ifndef SPECTRE_H
 #define SPECTRE_H

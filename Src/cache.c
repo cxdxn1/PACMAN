@@ -1,7 +1,5 @@
-// Source file for interacting with PAC addresses
-// Fork of Joseph Ravichandran (aka jprx) PacmanAttack, originally coded in Rust
-
-// Copyright © cxdxn1 2024, all rights reserved
+// cache.c
+// Created by Rayyan Khan
 
 #include "Headers/cache.h"
 

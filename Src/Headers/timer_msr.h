@@ -1,11 +1,10 @@
-// Header file for timer_msr.h
+// timer_msr.h
+// Created by Rayyan Khan
 
 // Kept comments from the original repository, please note that this is untested and may not work.
 // If anyone finds issues please contact me or feel free to contribute yourself
 // I will probably fix this at some point
 
-#include "Crate/crate_header1.h"
-#include "Crate/crate_header2.h"
 #include <stdint.h>
 
 // The overhead of doing timer measurements with a NOP

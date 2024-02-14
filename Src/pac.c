@@ -1,11 +1,9 @@
-// Source file utility for working with PACs
-// Fork of Joseph Ravichandran (aka jprx) PacmanAttack, originally coded in Rust
-
-// Copyright © cxdxn1 2024, all rights reserved
+// pac.c
+// Created by Rayyan Khan
 
 #include "Headers/pac.h"
 
-// Function to extract the Pointer Authentication Code (PAC) from a signed pointer.
+// Extracts the PAC from a signed pointer.
 PAC extract_pac(uint64_t signed_pointer) {
     PAC pac_lower = (signed_pointer >> 47) & 0x0FF;
     PAC pac_upper = (signed_pointer >> 56) & 0x0FF;

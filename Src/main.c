@@ -2,10 +2,7 @@
 // Exploit made public at the DEF CON 30 talk (https://pacmanattack.com)
 // Fork of Joseph Ravichandran (aka jprx) PacmanAttack, originally coded in Rust
 
-// Copyright © cxdxn1 2024, all rights reserved
-
-// PLEASE NOTE: Getting similar errors that I got in tests.c
-// Fix in progress
+// Copyright © Rayyan Khan (cxdxn1) 2024, all rights reserved
 
 // General headers used in C
 #include <stdint.h>
@@ -21,15 +18,16 @@
 #include "Headers/qos.h"
 #include "retpoline.h"
 #include "tests.h"
-#include "Headers/counter.h"
+
 #include "evset.h"
 #include "Headers/Libdarwin/kernel_rw.h"
 #include "Headers/Attacks/evict_reload.h"
 #include "Headers/Libdarwin/iokit.h"
+#include "Headers/counter.h"
 #include "Headers/timer_msr.h"
 #include "pacmankit.h"
 #include "Headers/cache.h"
-#include "msr.h"
+#include "Headers/msr.h"
 #include "Headers/attacks.h"
 #include "Headers/pac.h"
 #include <pthread.h>
@@ -78,6 +76,7 @@ void attack(uint8_t *shared_mem) {
     // attacks_pacman_end_to_end(shared_mem);
     // attacks_pacman_pacman_real(shared_mem);
 }
+
 
 
 // Measures and prints cache hit/miss latency and timer overhead using shared memory.

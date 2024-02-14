@@ -1,4 +1,5 @@
-// Header file for mach.h
+// mach.h
+// Created by Rayyan Khan
 
 #ifndef MACH_H
 #define MACH_H

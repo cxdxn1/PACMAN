@@ -1,5 +1,5 @@
-// Creates a data eviction set within a kernel memory region
-// Copyright © cxdxn1 2024, all rights reserved
+// evset.c
+// Created by Rayyan Khan
 
 #include "Headers/evset.h"
 #include <stdio.h>
@@ -11,9 +11,7 @@ uint64_t get_cache_set_m1(uint64_t paddr) {
     return 0;
 }
 
-// Function to create a data eviction set within a kernel memory region for a given physical address
-// Returns a vector of addresses within kernel_memory that will contend with target_paddr
-// Assumes PacmanKitConnection is defined elsewhere
+// Create a data eviction set within a kernel memory region for a given physical address
 void data_kpevset(uint64_t target_vaddr, uint64_t target_paddr, uint64_t kernel_memory, size_t kernel_memory_size) {
     PacmanKitConnection handle;  // Initialize PacmanKitConnection structure
 

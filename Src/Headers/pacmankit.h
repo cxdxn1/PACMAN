@@ -1,5 +1,5 @@
 // pacmankit.h
-// Copyright © cxdxn1 2024, all rights reserved
+// Created by Rayyan Khan
 
 #ifndef PACMANKIT_H
 #define PACMANKIT_H

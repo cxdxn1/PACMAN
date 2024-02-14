@@ -1,5 +1,5 @@
 // tests.c
-// Copyright © cxdxn1 2024, all rights reserved
+// Created by Rayyan Khan
 
 #include <stdio.h>
 

@@ -1,5 +1,5 @@
 // retpoline.h
-// Copyright © cxdxn1 2024, all rights reserved
+// Created by Rayyan Khan
 
 #ifndef RETPOLINE_H
 #define RETPOLINE_H

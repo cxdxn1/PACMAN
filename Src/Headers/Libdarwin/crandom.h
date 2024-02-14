@@ -1,4 +1,5 @@
-// Header file for crandom.h
+// crandom.h
+// Created by Rayyan Khan
 
 #ifndef CRANDOM_H
 #define CRANDOM_H

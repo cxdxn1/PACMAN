@@ -1,5 +1,5 @@
 // pacmankit.c
-// Copyright © cxdxn1 2024, all rights reserved
+// Created by Rayyan Khan
 
 #include "Headers/pacmankit.h"
 #include <IOKit/IOKitLib.h>
