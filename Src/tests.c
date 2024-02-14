@@ -6,12 +6,12 @@
 #include "Headers/tests.h"
 #include "Headers/retpoline.h"
 
-// PLEASE NOTE: read_volatile, set_core, gettime and CoreKind are curently broken
-// Currently working on fixing them
+// PLEASE NOTE: everything is currently broken
+// Currently working on fixing this
 
 void test_timers() {
     int x = 0;
-    uint64_t t1_mach = gettime();
+    uint64_t t1_mach = getline();
     uint64_t t1 = read_volatile(&CTR);
 
     for (int i = 0; i < 1000; i++) {
