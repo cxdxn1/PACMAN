@@ -19,7 +19,7 @@ void test_timers() {
     }
 
     uint64_t t2 = read_volatile(&CTR);
-    uint64_t t2_mach = gettime();
+    uint64_t t2_mach = getline();
 
     printf("Time difference (thread): %llu\n", t2 - t1);
     printf("Time difference (mach): %llu\n", t2_mach - t1_mach);
