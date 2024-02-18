@@ -26,11 +26,11 @@ void test_timers() {
     printf("%d\n", x);
 }
 
-// Declaration of EvSet
+// Declaration of evset
 typedef struct {
     uint8_t** addrs; // Use a pointer to an array of pointers
     int len;         // Length of the array
-} EvSet;
+} evset;
 
 void data_ev_set_test(uint8_t* shared_mem) {
     if (!set_core(CoreKind::PCORE)) {
