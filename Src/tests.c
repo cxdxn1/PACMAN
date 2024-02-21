@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <time.h>
 
 // Define constants if needed
 #define PAC_BITMASK 0x8000000000000000ULL
@@ -13,21 +14,31 @@ void inst_pev_set_test(uint8_t *shared_mem);
 void test_pacmankit();
 void test_forge_pacs();
 
+volatile uint64_t CTR;
+
 // Function implementations
 void test_timers(uint8_t *shared_mem) {
     uint64_t x = 0;
-    uint64_t t1_mach = gettime();
-    uint64_t t1 = read_volatile(&CTR);
-    
+
+    // Get the current time before the loop
+    struct timespec t1_mach;
+    clock_gettime(CLOCK_MONOTONIC, &t1_mach);
+    uint64_t t1 = CTR;
+
     for (int i = 0; i < 1000; i++) {
         x = i / 2 + x;
     }
     
-    uint64_t t2 = read_volatile(&CTR);
-    uint64_t t2_mach = gettime();
+    struct timespec t2_mach;
+    clock_gettime(CLOCK_MONOTONIC, &t2_mach);
+    uint64_t t2 = CTR;
 
-    printf("Time difference (thread): %llu\n", t2 - t1);
-    printf("Time difference (mach): %llu\n", t2_mach - t1_mach);
+    // Calculate time differences
+    uint64_t time_difference_thread = t2 - t1;
+    uint64_t time_difference_mach = (t2_mach.tv_sec - t1_mach.tv_sec) * 1000000000 + (t2_mach.tv_nsec - t1_mach.tv_nsec);
+
+    printf("Time difference (thread): %llu\n", time_difference_thread);
+    printf("Time difference (mach): %llu\n", time_difference_mach);
     printf("%llu\n", x);
 }
 
@@ -36,10 +47,6 @@ void data_ev_set_test(uint8_t *shared_mem) {
         printf("Error setting CPU affinity!\n");
         return;
     }
-
-    // Assuming the Rust functions data_evset and read_counter are available
-    // (replace with C equivalent if needed)
-    // Let's define data_evset and read_counter as placeholders
 
     // Call data_evset function
     DataEvSet evset = data_evset(&shared_mem[0], shared_mem);
